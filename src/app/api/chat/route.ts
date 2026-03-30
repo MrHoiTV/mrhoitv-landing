@@ -4,7 +4,7 @@ import path from 'path';
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
   baseURL: "https://openrouter.ai/api/v1",
   defaultHeaders: {
     "HTTP-Referer": "https://mrhoitv.com",
@@ -12,7 +12,7 @@ const openai = new OpenAI({
   }
 });
 
-const AI_MODEL = "z-ai/glm-4.5-air:free";
+const AI_MODEL = "google/gemini-2.0-flash-lite-preview-02-05:free";
 
 export async function POST(req: NextRequest) {
   try {
