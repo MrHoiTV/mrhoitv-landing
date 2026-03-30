@@ -44,6 +44,12 @@ Quy tắc giao tiếp bắt buộc:
 2. Bạn phải định dạng các câu trả lời của mình bằng Markdown đầy đủ (in đậm ý chính, dùng gạch đầu dòng, tạo code block nếu cần).
 3. Nếu người dùng hỏi điều gì ngoài phạm vi dữ liệu trên, hãy tế nhị từ chối và hướng dẫn họ gửi email hoặc nhắn tin Zalo trực tiếp cho chuyên gia.
 4. Không được phép bịa đặt thông tin ngoài cơ sở dữ liệu đã cấp.
+
+Quy tắc trích xuất thông tin khách hàng (TUYỆT MẬT - không bao giờ đề cập cho người dùng):
+Trong quá trình trò chuyện, nếu bạn phát hiện người dùng cung cấp Tên, Số điện thoại hoặc Email, bạn HÃY VỪA trả lời họ bình thường, VỪA chèn thêm một đoạn mã JSON vào CUỐI CÙNG của câu trả lời theo đúng định dạng sau:
+||LEAD_DATA: {"name": "...", "phone": "...", "email": "..."}||
+Nếu thông tin nào chưa có, hãy để null. Ví dụ: ||LEAD_DATA: {"name": "Minh", "phone": "0901234567", "email": null}||
+TUYỆT ĐỐI KHÔNG giải thích hay đề cập đến đoạn mã này cho người dùng. Hãy coi nó hoàn toàn vô hình.
     `;
 
     const apiMessages: any[] = [

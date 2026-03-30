@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RefreshCw, X, MessageSquare, Send } from "lucide-react";
 import { marked } from "marked";
@@ -16,6 +16,92 @@ const INITIAL_MESSAGE: Message = {
   content: "Xin chào! Mình là trợ lý AI chuyên môn của Mr Hói TV. Mình có thể giúp gì cho giải pháp tự động hóa của bạn hôm nay?"
 };
 
+// ============================================================
+// CẤU HÌNH GOOGLE APPS SCRIPT WEB APP
+// Anh thay URL bên dưới bằng URL Deploy thật của mình (xem hướng dẫn Bước 3)
+// ============================================================
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
+
+// Pattern dùng để nhận dạng tag ẩn từ AI
+const LEAD_DATA_PATTERN = /\|\|LEAD_DATA:\s*(\{.*?\})\s*\|\|/;
+
+/**
+ * Hàm bóc tách dữ liệu Lead từ câu trả lời AI.
+ * - Nếu có tag ||LEAD_DATA:{...}|| → Parse JSON → Gửi lên Google Sheets
+ * - Xóa tag khỏi câu trả lời → Trả về text sạch cho khách xem
+ */
+function processAIResponse(
+  aiResponse: string,
+  chatHistory: Message[],
+  sessionId: string
+): string {
+  if (!aiResponse.includes("||LEAD_DATA:")) {
+    return aiResponse;
+  }
+
+  const match = aiResponse.match(LEAD_DATA_PATTERN);
+
+  if (match && match[1]) {
+    try {
+      const leadData = JSON.parse(match[1]);
+      console.log("✅ Dữ liệu khách hàng bóc được:", leadData);
+
+      // Chỉ gửi khi có ít nhất 1 thông tin hữu ích
+      if (leadData.name || leadData.phone || leadData.email) {
+        // Xây dựng lịch sử chat dạng text dễ đọc trên Google Sheets
+        const formattedHistory = chatHistory
+          .map((msg) => {
+            const role = msg.role === "user" ? "Khách" : "AI";
+            const content = msg.content.replace(LEAD_DATA_PATTERN, "").trim();
+            return `${role}: ${content}`;
+          })
+          .join("\n\n");
+
+        sendLeadToGoogleSheets(leadData, formattedHistory, sessionId);
+      }
+    } catch (error) {
+      console.error("❌ Lỗi parse JSON từ AI:", error);
+    }
+  }
+
+  // Xóa tag ẩn, trả về câu trả lời sạch
+  return aiResponse.replace(LEAD_DATA_PATTERN, "").trim();
+}
+
+/**
+ * Gửi dữ liệu Lead lên Google Apps Script → Google Sheets
+ */
+async function sendLeadToGoogleSheets(
+  leadData: { name?: string; phone?: string; email?: string },
+  chatHistoryText: string,
+  sessionId: string
+) {
+  if (!GOOGLE_SCRIPT_URL) {
+    console.warn("⚠️ GOOGLE_SCRIPT_URL chưa được cấu hình. Bỏ qua gửi lead.");
+    return;
+  }
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: leadData.name || "",
+        phone: leadData.phone || "",
+        email: leadData.email || "",
+        source: typeof window !== "undefined" ? window.location.href : "",
+        sessionId: sessionId,
+        chatHistory: chatHistoryText,
+        timestamp: new Date().toLocaleString("vi-VN"),
+      }),
+    });
+    console.log("📤 Đã đồng bộ dữ liệu Lead vào Google Sheets!");
+  } catch (err) {
+    console.warn("⚠️ Không gửi được dữ liệu lead:", err);
+  }
+}
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -24,6 +110,12 @@ export default function Chatbot() {
   const [inputText, setInputText] = useState("");
 
   const chatEndRef = useRef<HTMLDivElement>(null);
+
+  // Tạo Session ID duy nhất cho mỗi phiên tải trang (dùng để gộp dòng trên Google Sheets)
+  const sessionId = useMemo(
+    () => "session_" + Date.now() + "_" + Math.random().toString(36).substring(2, 7),
+    []
+  );
 
   // Auto scroll to bottom when messages change or typing state updates
   useEffect(() => {
@@ -35,9 +127,7 @@ export default function Chatbot() {
   const handleRefresh = () => {
     if (isRefreshing) return;
     setIsRefreshing(true);
-    // Xóa toàn bộ lịch sử chat & Hiển thị lại lời chào
     setMessages([INITIAL_MESSAGE]);
-    // Sau đúng 500ms dừng animation xoay
     setTimeout(() => {
       setIsRefreshing(false);
     }, 500);
@@ -47,7 +137,8 @@ export default function Chatbot() {
     if (!inputText.trim() || isTyping) return;
 
     const userMsg: Message = { role: "user", content: inputText };
-    setMessages((prev) => [...prev, userMsg]);
+    const updatedMessages = [...messages, userMsg];
+    setMessages(updatedMessages);
     setInputText("");
     setIsTyping(true);
 
@@ -56,8 +147,10 @@ export default function Chatbot() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: [...messages, userMsg].filter(m => m.role !== "assistant" || m.content !== INITIAL_MESSAGE.content) // Optionally send only useful history
-        })
+          messages: updatedMessages.filter(
+            (m) => m.role !== "assistant" || m.content !== INITIAL_MESSAGE.content
+          ),
+        }),
       });
 
       if (!response.ok) {
@@ -65,15 +158,36 @@ export default function Chatbot() {
       }
 
       const data = await response.json();
-      
-      if (data.error) {
-         setMessages((prev) => [...prev, { role: "assistant", content: "Xin lỗi, đã xảy ra lỗi máy chủ. Bạn vui lòng thử lại sau hoặc liên hệ Zalo 0965558666 nhé." }]);
-      } else {
-         setMessages((prev) => [...prev, { role: "assistant", content: data.content }]);
-      }
 
+      if (data.error) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content:
+              "Xin lỗi, đã xảy ra lỗi máy chủ. Bạn vui lòng thử lại sau hoặc liên hệ Zalo 0965558666 nhé.",
+          },
+        ]);
+      } else {
+        // ★ BÓC TÁCH LEAD DATA trước khi hiển thị cho khách
+        const cleanContent = processAIResponse(
+          data.content,
+          [...updatedMessages, { role: "assistant" as const, content: data.content }],
+          sessionId
+        );
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: cleanContent },
+        ]);
+      }
     } catch (err) {
-      setMessages((prev) => [...prev, { role: "assistant", content: "Lỗi đường truyền! Vui lòng thử lại sau ít phút." }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "Lỗi đường truyền! Vui lòng thử lại sau ít phút.",
+        },
+      ]);
     } finally {
       setIsTyping(false);
     }
@@ -88,9 +202,7 @@ export default function Chatbot() {
 
   // Convert markdown body to safe HTML
   const createMarkup = (mdContent: string) => {
-    // Parse markdown synchronously, return as raw string
     const rawMarkup = marked.parse(mdContent) as string;
-    // Sanitize string to prevent XSS
     const cleanMarkup = DOMPurify.sanitize(rawMarkup);
     return { __html: cleanMarkup };
   };
