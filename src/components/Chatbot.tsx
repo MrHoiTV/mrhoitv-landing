@@ -20,7 +20,7 @@ const INITIAL_MESSAGE: Message = {
 // CẤU HÌNH GOOGLE APPS SCRIPT WEB APP
 // Anh thay URL bên dưới bằng URL Deploy thật của mình (xem hướng dẫn Bước 3)
 // ============================================================
-const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzkXpGaN_OsaZKTo5JpO4QVEQMbCfotoneEa0CwMsoAZSwU-XnX3A6lKR7ZxVx_AtQl/exec";
 
 // Pattern dùng để nhận dạng tag ẩn từ AI
 const LEAD_DATA_PATTERN = /\|\|LEAD_DATA:\s*(\{.*?\})\s*\|\|/;
