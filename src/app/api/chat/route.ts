@@ -12,7 +12,7 @@ const openai = new OpenAI({
   }
 });
 
-const AI_MODEL = "google/gemini-2.0-flash-lite-preview-02-05:free";
+const AI_MODEL = "google/gemini-2.0-flash-lite-001";
 
 export async function POST(req: NextRequest) {
   try {
