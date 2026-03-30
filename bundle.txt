@@ -1,0 +1,1177 @@
+﻿===FILE_START==
+D:/Demo/mrhoitv-landing/AGENTS.md
+<!-- BEGIN:nextjs-agent-rules -->
+# This is NOT the Next.js you know
+
+This version has breaking changes â€” APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+<!-- END:nextjs-agent-rules -->
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/CLAUDE.md
+@AGENTS.md
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/eslint.config.mjs
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/next-env.d.ts
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+import "./.next/dev/types/routes.d.ts";
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/next.config.ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/package.json
+{
+  "name": "mrhoitv-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "dompurify": "^3.3.3",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.7.0",
+    "marked": "^17.0.5",
+    "next": "16.2.1",
+    "openai": "^6.33.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/dompurify": "^3.0.5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/postcss.config.mjs
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/README.md
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/public/chatbot_data.txt
+* TÃªn chuyÃªn gia: Mr HÃ³i TV
+* Äá»‹nh vá»‹: ChuyÃªn gia AI & Tá»± Ä‘á»™ng hÃ³a
+* Giáº£i phÃ¡p: MCP server, N8N AI, Ä‘Ã o táº¡o AI branding
+* KhÃ³a há»c: K89 - Agentic AI (12 buá»•i, Online Zoom)
+* LiÃªn há»‡: trungbvscit@gmail.com | Zalo 0965558666
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/app/globals.css
+@import "tailwindcss";
+
+@theme {
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container-high: #e7e8e9;
+  --color-inverse-primary: #b2c5ff;
+  --color-primary-container: #0052cc;
+  --color-on-secondary-container: #415382;
+  --color-on-surface: #191c1d;
+  --color-inverse-on-surface: #f0f1f2;
+  --color-error-container: #ffdad6;
+  --color-tertiary-container: #a33500;
+  --color-secondary-container: #b6c8fe;
+  --color-on-tertiary: #ffffff;
+  --color-error: #ba1a1a;
+  --color-on-tertiary-fixed-variant: #812800;
+  --color-on-tertiary-fixed: #380d00;
+  --color-tertiary-fixed-dim: #ffb59b;
+  --color-outline: #737685;
+  --color-primary-fixed: #dae2ff;
+  --color-inverse-surface: #2e3132;
+  --color-primary: #003d9b;
+  --color-primary-fixed-dim: #b2c5ff;
+  --color-on-surface-variant: #434654;
+  --color-secondary: #4c5d8d;
+  --color-tertiary-fixed: #ffdbcf;
+  --color-on-secondary-fixed: #021945;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed-variant: #0040a2;
+  --color-surface-variant: #e1e3e4;
+  --color-secondary-fixed: #dae2ff;
+  --color-on-secondary: #ffffff;
+  --color-surface-container-highest: #e1e3e4;
+  --color-on-primary-container: #c4d2ff;
+  --color-surface-bright: #f8f9fa;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+  --color-surface-container: #edeeef;
+  --color-surface-dim: #d9dadb;
+  --color-on-primary: #ffffff;
+  --color-tertiary: #7b2600;
+  --color-secondary-fixed-dim: #b4c5fb;
+  --color-on-secondary-fixed-variant: #344573;
+  --color-surface-tint: #0c56d0;
+  --color-surface: #f8f9fa;
+  --color-on-primary-fixed: #001848;
+  --color-background: #f8f9fa;
+  --color-on-background: #191c1d;
+  --color-outline-variant: #c3c6d6;
+  --color-on-tertiary-container: #ffc6b2;
+
+  --font-headline: var(--font-be-vietnam-pro);
+  --font-body: var(--font-inter);
+  --font-label: var(--font-inter);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+  }
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Chatbot Markdown Styling */
+.chat-markdown p {
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+.chat-markdown p:last-child {
+  margin-bottom: 0;
+}
+.chat-markdown ul {
+  list-style-type: disc;
+}
+.chat-markdown ol {
+  list-style-type: decimal;
+}
+.chat-markdown ul, .chat-markdown ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.chat-markdown li {
+  margin-bottom: 0.25rem;
+}
+.chat-markdown strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.chat-markdown code {
+  background-color: var(--color-inverse-surface);
+  color: var(--color-inverse-on-surface);
+  font-family: 'Fira Code', Consolas, monospace;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+}
+.chat-markdown pre {
+  background-color: var(--color-inverse-surface);
+  color: var(--color-inverse-on-surface);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+.chat-markdown pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+.chat-markdown blockquote {
+  border-left: 3px solid var(--color-primary);
+  color: var(--color-on-surface-variant);
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/app/layout.tsx
+import type { Metadata } from 'next';
+import { Be_Vietnam_Pro, Inter } from 'next/font/google';
+import './globals.css';
+
+const beVietnamPro = Be_Vietnam_Pro({
+  variable: '--font-be-vietnam-pro',
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '600', '700', '800', '900'],
+});
+
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '500', '600'],
+});
+
+export const metadata: Metadata = {
+  title: 'Mr. HÃ³i TV - ChuyÃªn gia AI & Tá»± Ä‘á»™ng hÃ³a Doanh nghiá»‡p',
+  description: 'HÆ¡n 20 nÄƒm kinh nghiá»‡m trong ngÃ nh cÃ´ng nghá»‡, kiáº¿n táº¡o tÆ°Æ¡ng lai sá»‘ báº±ng AI vÃ  Automation.',
+};
+
+import Chatbot from '@/components/Chatbot';
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="vi" className="scroll-smooth">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+      </head>
+      <body
+        className={`${beVietnamPro.variable} ${inter.variable} antialiased bg-surface text-on-surface font-body`}
+      >
+        {children}
+        <Chatbot />
+      </body>
+    </html>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/app/page.tsx
+import NavBar from "@/components/NavBar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Services from "@/components/Services";
+import Portfolio from "@/components/Portfolio";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  return (
+    <>
+      <NavBar />
+      <main className="pt-24">
+        <Hero />
+        <About />
+        <Services />
+        <Portfolio />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/app/api/chat/route.ts
+import { NextRequest, NextResponse } from "next/server";
+import { promises as fs } from 'fs';
+import path from 'path';
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: "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",
+  baseURL: "https://openrouter.ai/api/v1",
+  defaultHeaders: {
+    "HTTP-Referer": "https://mrhoitv.com",
+    "X-Title": "Mr Hoi TV Chatbot",
+  }
+});
+
+const AI_MODEL = "z-ai/glm-4.5-air:free";
+
+export async function POST(req: NextRequest) {
+  try {
+    const { messages } = await req.json();
+
+    if (!messages || !Array.isArray(messages)) {
+      return NextResponse.json({ error: "Invalid request payload" }, { status: 400 });
+    }
+
+    // Attempt to load Knowledge Base
+    let botData = "";
+    try {
+      const dataFilePath = path.join(process.cwd(), "public", "chatbot_data.txt");
+      botData = await fs.readFile(dataFilePath, "utf-8");
+    } catch (err) {
+      console.warn("Could not read chatbot_data.txt from public. Using default data.");
+      botData = `* TÃªn chuyÃªn gia: Mr HÃ³i TV\n* Äá»‹nh vá»‹: ChuyÃªn gia AI & Tá»± Ä‘á»™ng hÃ³a\n* Giáº£i phÃ¡p: MCP server, N8N AI, Ä‘Ã o táº¡o AI branding\n* KhÃ³a há»c: K89 - Agentic AI (12 buá»•i, Online Zoom)\n* LiÃªn há»‡: trungbvscit@gmail.com | Zalo 0965558666`;
+    }
+
+    const SYSTEM_PROMPT = `
+Báº¡n lÃ  AI trá»£ lÃ½ cÃ¡ nhÃ¢n Ä‘á»™c quyá»n trÃªn website cá»§a chuyÃªn gia Mr HÃ³i TV. 
+Nhiá»‡m vá»¥ cá»§a báº¡n lÃ  há»— trá»£ khÃ¡ch truy cáº­p lá»‹ch sá»±, cung cáº¥p thÃ´ng tin chÃ­nh xÃ¡c vá» cÃ¡c dá»‹ch vá»¥, khÃ³a há»c, vÃ  dá»± Ã¡n cá»§a chuyÃªn gia nÃ y.
+
+DÆ°á»›i Ä‘Ã¢y lÃ  cÆ¡ sá»Ÿ dá»¯ liá»‡u kiáº¿n thá»©c (Knowledge Base) cá»§a báº¡n:
+${botData}
+
+Quy táº¯c giao tiáº¿p báº¯t buá»™c:
+1. LuÃ´n chÃ o há»i thÃ¢n thiá»‡n vÃ  káº¿t thÃºc báº±ng cÃ¡ch má»i há» Ä‘áº·t thÃªm cÃ¢u há»i.
+2. Báº¡n pháº£i Ä‘á»‹nh dáº¡ng cÃ¡c cÃ¢u tráº£ lá»i cá»§a mÃ¬nh báº±ng Markdown Ä‘áº§y Ä‘á»§ (in Ä‘áº­m Ã½ chÃ­nh, dÃ¹ng gáº¡ch Ä‘áº§u dÃ²ng, táº¡o code block náº¿u cáº§n).
+3. Náº¿u ngÆ°á»i dÃ¹ng há»i Ä‘iá»u gÃ¬ ngoÃ i pháº¡m vi dá»¯ liá»‡u trÃªn, hÃ£y táº¿ nhá»‹ tá»« chá»‘i vÃ  hÆ°á»›ng dáº«n há» gá»­i email hoáº·c nháº¯n tin Zalo trá»±c tiáº¿p cho chuyÃªn gia.
+4. KhÃ´ng Ä‘Æ°á»£c phÃ©p bá»‹a Ä‘áº·t thÃ´ng tin ngoÃ i cÆ¡ sá»Ÿ dá»¯ liá»‡u Ä‘Ã£ cáº¥p.
+    `;
+
+    const apiMessages: any[] = [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...messages.map((m: any) => ({ role: m.role, content: m.content }))
+    ];
+
+    const response = await openai.chat.completions.create({
+      model: AI_MODEL,
+      messages: apiMessages,
+    });
+
+    return NextResponse.json({
+      role: "assistant",
+      content: response.choices[0].message?.content || ""
+    });
+
+  } catch (error: any) {
+    console.error("Chat API Error:", error.message || error);
+    return NextResponse.json({ error: "Lá»—i káº¿t ná»‘i tá»›i AI. Vui lÃ²ng thá»­ láº¡i sau.", details: error.message }, { status: 500 });
+  }
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/About.tsx
+"use client";
+
+import { motion } from "framer-motion";
+
+export default function About() {
+  return (
+    <section className="bg-surface-container-low py-32">
+      <div className="max-w-7xl mx-auto px-8 grid grid-cols-12 gap-12">
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="col-span-12 md:col-span-4"
+        >
+          <h2 className="text-4xl font-black font-headline text-primary sticky top-32">
+            TÃ¢m tháº¿ cá»§a má»™t <br /> ChuyÃªn gia
+          </h2>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="col-span-12 md:col-span-7 md:col-start-6 space-y-12"
+        >
+          <p className="text-2xl text-on-surface leading-snug font-body italic border-l-4 border-primary pl-8">
+            "AI khÃ´ng thay tháº¿ con ngÆ°á»i, nhÆ°ng nhá»¯ng ngÆ°á»i sá»­ dá»¥ng AI sáº½ thay tháº¿ nhá»¯ng ngÆ°á»i khÃ´ng sá»­ dá»¥ng nÃ³."
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold font-headline text-on-surface">HÃ nh trÃ¬nh 20 nÄƒm</h3>
+              <p className="text-on-surface-variant leading-relaxed">
+                Báº¯t Ä‘áº§u tá»« nhá»¯ng dÃ²ng code Ä‘áº§u tiÃªn khi internet cÃ²n sÆ¡ khai, tÃ´i Ä‘Ã£ chá»©ng kiáº¿n sá»± chuyá»ƒn mÃ¬nh cá»§a cÃ´ng nghá»‡. Hiá»‡n táº¡i, sá»© má»‡nh cá»§a tÃ´i lÃ  bÃ¬nh dÃ¢n hÃ³a AI cho má»i doanh nghiá»‡p Viá»‡t.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold font-headline text-on-surface">Äam mÃª cÃ´ng nghá»‡</h3>
+              <p className="text-on-surface-variant leading-relaxed">
+                LuÃ´n tÃ¬m tÃ²i nhá»¯ng giáº£i phÃ¡p tá»± Ä‘á»™ng hÃ³a thÃ´ng minh nháº¥t Ä‘á»ƒ giáº£i phÃ³ng sá»©c lao Ä‘á»™ng, giÃºp con ngÆ°á»i táº­p trung vÃ o nhá»¯ng giÃ¡ trá»‹ sÃ¡ng táº¡o vÃ  nhÃ¢n báº£n hÆ¡n.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/Chatbot.tsx
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { RefreshCw, X, MessageSquare, Send } from "lucide-react";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
+
+type Message = {
+  role: "user" | "assistant";
+  content: string;
+};
+
+const INITIAL_MESSAGE: Message = {
+  role: "assistant",
+  content: "Xin chÃ o! MÃ¬nh lÃ  trá»£ lÃ½ AI chuyÃªn mÃ´n cá»§a Mr HÃ³i TV. MÃ¬nh cÃ³ thá»ƒ giÃºp gÃ¬ cho giáº£i phÃ¡p tá»± Ä‘á»™ng hÃ³a cá»§a báº¡n hÃ´m nay?"
+};
+
+export default function Chatbot() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
+  const [inputText, setInputText] = useState("");
+
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto scroll to bottom when messages change or typing state updates
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, isTyping, isOpen]);
+
+  const handleRefresh = () => {
+    if (isRefreshing) return;
+    setIsRefreshing(true);
+    // XÃ³a toÃ n bá»™ lá»‹ch sá»­ chat & Hiá»ƒn thá»‹ láº¡i lá»i chÃ o
+    setMessages([INITIAL_MESSAGE]);
+    // Sau Ä‘Ãºng 500ms dá»«ng animation xoay
+    setTimeout(() => {
+      setIsRefreshing(false);
+    }, 500);
+  };
+
+  const handleSendMessage = async () => {
+    if (!inputText.trim() || isTyping) return;
+
+    const userMsg: Message = { role: "user", content: inputText };
+    setMessages((prev) => [...prev, userMsg]);
+    setInputText("");
+    setIsTyping(true);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [...messages, userMsg].filter(m => m.role !== "assistant" || m.content !== INITIAL_MESSAGE.content) // Optionally send only useful history
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("API Route error");
+      }
+
+      const data = await response.json();
+      
+      if (data.error) {
+         setMessages((prev) => [...prev, { role: "assistant", content: "Xin lá»—i, Ä‘Ã£ xáº£y ra lá»—i mÃ¡y chá»§. Báº¡n vui lÃ²ng thá»­ láº¡i sau hoáº·c liÃªn há»‡ Zalo 0965558666 nhÃ©." }]);
+      } else {
+         setMessages((prev) => [...prev, { role: "assistant", content: data.content }]);
+      }
+
+    } catch (err) {
+      setMessages((prev) => [...prev, { role: "assistant", content: "Lá»—i Ä‘Æ°á»ng truyá»n! Vui lÃ²ng thá»­ láº¡i sau Ã­t phÃºt." }]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  // Convert markdown body to safe HTML
+  const createMarkup = (mdContent: string) => {
+    // Parse markdown synchronously, return as raw string
+    const rawMarkup = marked.parse(mdContent) as string;
+    // Sanitize string to prevent XSS
+    const cleanMarkup = DOMPurify.sanitize(rawMarkup);
+    return { __html: cleanMarkup };
+  };
+
+  return (
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="w-[350px] sm:w-[400px] h-[500px] max-h-[80vh] bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl rounded-2xl mb-4 flex flex-col overflow-hidden"
+          >
+            {/* Header */}
+            <div className="flex justify-between items-center px-4 py-3 bg-gradient-to-r from-primary to-primary/80 text-white shadow-sm shrink-0">
+              <div className="flex items-center gap-2">
+                <div className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-bold text-[15px] font-headline">Trá»£ lÃ½ AI - Mr.HÃ³i</span>
+                  <span className="text-[10px] text-white/80 leading-none">Powered by Agentic AI</span>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-1">
+                <motion.button 
+                  onClick={handleRefresh}
+                  disabled={isTyping}
+                  className="p-2 hover:bg-white/20 rounded-full transition-colors disabled:opacity-50"
+                  title="LÃ m má»›i há»™i thoáº¡i"
+                >
+                  <RefreshCw size={16} className={`text-white ${isRefreshing ? "animate-spin" : ""}`} />
+                </motion.button>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                  title="ÄÃ³ng"
+                >
+                  <X size={18} className="text-white" />
+                </button>
+              </div>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-transparent custom-scrollbar leading-relaxed">
+              <AnimatePresence initial={false}>
+                {messages.map((msg, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: msg.role === "user" ? 20 : -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className={`flex items-end gap-2 custom-msg-row ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                  >
+                    {msg.role === "assistant" && (
+                      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 mb-1 shadow-md">
+                        <span className="material-symbols-outlined text-white text-sm" data-weight="fill">smart_toy</span>
+                      </div>
+                    )}
+                    
+                    <div 
+                      className={`relative px-4 py-3 rounded-2xl max-w-[80%] text-sm ${
+                        msg.role === "user" 
+                          ? "bg-primary text-white rounded-br-sm shadow-md"
+                          : "bg-surface text-on-surface border border-outline-variant/30 rounded-bl-sm shadow-sm"
+                      }`}
+                    >
+                      {msg.role === "assistant" ? (
+                        <div 
+                           className="chat-markdown"
+                           dangerouslySetInnerHTML={createMarkup(msg.content)} 
+                        />
+                      ) : (
+                        <div className="whitespace-pre-wrap">{msg.content}</div>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+               {/* Typing Indicator */}
+              {isTyping && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="flex items-end gap-2"
+                >
+                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 mb-1 shadow-md">
+                    <span className="material-symbols-outlined text-white text-sm" data-weight="fill">smart_toy</span>
+                  </div>
+                  <div className="px-4 py-3 rounded-2xl rounded-bl-sm bg-surface text-on-surface-variant border border-outline-variant/30 text-xs font-semibold flex items-center gap-1 shadow-sm w-fit">
+                    Äang nháº­p 
+                    <span className="flex gap-1 ml-1">
+                      <motion.span animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.0 }} className="w-1 h-1 bg-primary rounded-full block"></motion.span>
+                      <motion.span animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1 h-1 bg-primary rounded-full block"></motion.span>
+                      <motion.span animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-1 h-1 bg-primary rounded-full block"></motion.span>
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Dummy element for Auto Scrolling */}
+              <div ref={chatEndRef} />
+            </div>
+
+            {/* Input Box */}
+            <div className="p-3 bg-white/60 border-t border-slate-200">
+              <div className="flex items-center bg-white rounded-full border border-slate-300 px-3 py-1 shadow-inner focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary transition-all">
+                <input
+                  type="text"
+                  value={inputText}
+                  placeholder="Gá»­i cÃ¢u há»i..."
+                  onChange={(e) => setInputText(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="flex-1 bg-transparent py-2 px-2 text-sm outline-none font-body text-slate-800"
+                  disabled={isTyping}
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={!inputText.trim() || isTyping}
+                  className="bg-primary text-white p-2 rounded-full cursor-pointer hover:bg-primary-container hover:text-on-primary-container disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                >
+                  <Send size={16} />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="w-14 h-14 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-white shadow-xl shadow-primary/30 z-[101]"
+      >
+        <MessageSquare size={24} />
+      </motion.button>
+    </div>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/Contact.tsx
+"use client";
+
+import { motion } from "framer-motion";
+
+export default function Contact() {
+  return (
+    <section className="py-32 bg-surface" id="contact">
+      <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-20">
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="space-y-10"
+        >
+          <h2 className="text-5xl font-black font-headline leading-tight">
+            Sáºµn sÃ ng Ä‘á»ƒ <br /> <span className="text-primary">Äá»™t phÃ¡</span> cÃ¹ng AI?
+          </h2>
+          <p className="text-xl text-on-surface-variant leading-relaxed">
+            HÃ£y Ä‘á»ƒ láº¡i thÃ´ng tin, tÃ´i sáº½ trá»±c tiáº¿p liÃªn há»‡ vÃ  tÆ° váº¥n giáº£i phÃ¡p tá»‘i Æ°u nháº¥t cho bÃ i toÃ¡n cá»§a báº¡n.
+          </p>
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined">mail</span>
+              </div>
+              <div>
+                <div className="text-sm font-bold text-on-surface-variant">Email</div>
+                <div className="text-lg font-semibold">contact@mrhoitv.com</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined">call</span>
+              </div>
+              <div>
+                <div className="text-sm font-bold text-on-surface-variant">Hotline</div>
+                <div className="text-lg font-semibold">090x xxx xxx</div>
+              </div>
+            </div>
+          </div>
+          <div className="flex gap-4 pt-4">
+            <motion.a whileHover={{ scale: 1.1, backgroundColor: "var(--color-primary)", color: "white" }} className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center transition-colors" href="#">FB</motion.a>
+            <motion.a whileHover={{ scale: 1.1, backgroundColor: "var(--color-primary)", color: "white" }} className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center transition-colors" href="#">IN</motion.a>
+            <motion.a whileHover={{ scale: 1.1, backgroundColor: "var(--color-primary)", color: "white" }} className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center transition-colors" href="#">YT</motion.a>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-surface-container-lowest p-10 rounded-[2.5rem] shadow-xl"
+        >
+          <form className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-on-surface-variant ml-1">Há» vÃ  tÃªn</label>
+              <input className="w-full bg-surface-container-low border-none rounded-xl p-4 focus:ring-2 focus:ring-primary focus:bg-white transition-all outline-none" placeholder="Nháº­p tÃªn cá»§a báº¡n" type="text" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-on-surface-variant ml-1">Sá»‘ Ä‘iá»‡n thoáº¡i / Zalo</label>
+              <input className="w-full bg-surface-container-low border-none rounded-xl p-4 focus:ring-2 focus:ring-primary focus:bg-white transition-all outline-none" placeholder="Nháº­p sá»‘ Ä‘iá»‡n thoáº¡i" type="text" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-on-surface-variant ml-1">Ná»™i dung cáº§n tÆ° váº¥n</label>
+              <textarea className="w-full bg-surface-container-low border-none rounded-xl p-4 focus:ring-2 focus:ring-primary focus:bg-white transition-all outline-none min-h-[120px]" placeholder="Báº¡n Ä‘ang quan tÃ¢m Ä‘áº¿n giáº£i phÃ¡p nÃ o?" rows={4}></textarea>
+            </div>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="button"
+              className="w-full bg-primary text-on-primary py-4 rounded-xl font-bold font-headline text-lg shadow-md hover:shadow-lg hover:shadow-primary/30 transition-shadow"
+            >
+              Gá»­i yÃªu cáº§u ngay
+            </motion.button>
+          </form>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/Footer.tsx
+export default function Footer() {
+  return (
+    <footer className="w-full py-12 border-t border-slate-200 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-lg font-bold text-slate-900 font-headline">Mr. HÃ³i TV</div>
+        <p className="text-slate-500 font-body text-sm text-center md:text-left">
+          Â© 2024 Mr. HÃ³i TV. ChuyÃªn gia Giáº£i phÃ¡p AI & Tá»± Ä‘á»™ng hÃ³a Doanh nghiá»‡p.
+        </p>
+        <div className="flex gap-8">
+          <a className="text-slate-500 hover:text-blue-700 transition-colors text-sm font-medium" href="#">Facebook</a>
+          <a className="text-slate-500 hover:text-blue-700 transition-colors text-sm font-medium" href="#">LinkedIn</a>
+          <a className="text-slate-500 hover:text-blue-700 transition-colors text-sm font-medium" href="#">YouTube</a>
+          <a className="text-slate-500 hover:text-blue-700 transition-colors text-sm font-medium" href="#">Zalo</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/Hero.tsx
+"use client";
+
+import { motion } from "framer-motion";
+
+export default function Hero() {
+  return (
+    <section className="max-w-7xl mx-auto px-8 py-20 flex flex-col md:flex-row items-center gap-16">
+      <motion.div 
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="flex-1 space-y-8"
+      >
+        <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-widest uppercase">
+          AI Specialist & Automation Expert
+        </div>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-headline text-primary tracking-tight leading-relaxed md:leading-tight break-words">
+          Mr. HÃ³i TV â€” <br className="hidden sm:block" />
+          <span className="text-on-surface">Kiáº¿n táº¡o tÆ°Æ¡ng lai sá»‘.</span>
+        </h1>
+        <p className="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed font-body">
+          HÆ¡n 20 nÄƒm kinh nghiá»‡m trong ngÃ nh cÃ´ng nghá»‡, tÃ´i táº­n dá»¥ng sá»©c máº¡nh cá»§a AI vÃ  Automation Ä‘á»ƒ giÃºp doanh nghiá»‡p bá»©t phÃ¡ hiá»‡u suáº¥t vÃ  tá»‘i Æ°u hÃ³a quy trÃ¬nh váº­n hÃ nh.
+        </p>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 pt-4 w-full">
+          <motion.button 
+            whileHover={{ y: -2, boxShadow: "0px 10px 20px rgba(0, 61, 155, 0.2)" }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full sm:w-auto bg-primary text-on-primary px-8 py-4 rounded-xl font-headline font-bold text-lg shadow-xl shadow-primary/20 transition-all text-center"
+          >
+            Báº¯t Ä‘áº§u ngay
+          </motion.button>
+          <motion.button 
+            whileHover={{ x: 5 }}
+            className="w-full sm:w-auto flex items-center gap-2 font-headline font-semibold text-primary transition-all group py-2"
+          >
+            Xem há»“ sÆ¡ nÄƒng lá»±c
+            <span className="material-symbols-outlined group-hover:block transition-all">arrow_forward</span>
+          </motion.button>
+        </div>
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        className="flex-1 relative"
+      >
+        <div className="w-full aspect-square rounded-[2rem] overflow-hidden bg-surface-container-high relative z-10">
+          <img 
+            className="w-full h-full object-cover" 
+            alt="Professional headshot of Mr. HÃ³i TV" 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsKfj-MdR5vhJt1tWVa0O6RVp6kOPnMhGreyNqzL_7Zii2FJ3nS5q4NcaCIOHsjlAxCHWOqv5e1YIagZXtD2b2xkayQvsPu9H3E4HJASNexUy2Z3ZuDYem4-0JMM36X1UcpQsIVwzG_CyukcHYB0FwkYb5aNBtcOKbwBsBBnx2xFElNNiTrKZHSE7FIjcY0DIGsMFUlnScixqg1YwbR6A69JflaEvOJ8uBpy0quqQQOccC8fXeoCaDTQK-N_TD4CZb5IOgBf0BLyCk"
+          />
+        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="absolute -bottom-8 -left-8 bg-surface-container-lowest p-8 rounded-2xl shadow-2xl z-20 flex items-center gap-4"
+        >
+          <div className="p-3 bg-primary/10 rounded-full">
+            <span className="material-symbols-outlined text-primary text-3xl" data-weight="fill">verified</span>
+          </div>
+          <div>
+            <div className="text-2xl font-black font-headline">20+</div>
+            <div className="text-xs text-on-surface-variant font-medium">NÄƒm kinh nghiá»‡m</div>
+          </div>
+        </motion.div>
+        <div className="absolute -top-6 -right-6 w-32 h-32 bg-tertiary/10 rounded-full blur-3xl"></div>
+      </motion.div>
+    </section>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/NavBar.tsx
+"use client";
+
+import { motion } from "framer-motion";
+
+export default function NavBar() {
+  return (
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed top-0 w-full z-50 glass-nav shadow-sm"
+    >
+      <div className="flex justify-between items-center max-w-7xl mx-auto px-4 md:px-8 py-4">
+        <div className="text-2xl md:text-3xl font-black text-blue-900 tracking-tighter font-headline leading-relaxed break-words">
+          Mr. HÃ³i TV
+        </div>
+        <div className="hidden md:flex items-center space-x-8 font-headline tracking-tight font-semibold text-sm">
+          <a className="text-blue-700 border-b-2 border-blue-700 pb-1" href="#">Giá»›i thiá»‡u</a>
+          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#services">Dá»‹ch vá»¥</a>
+          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#projects">Dá»± Ã¡n</a>
+          <a className="text-slate-600 hover:text-blue-800 transition-colors" href="#contact">LiÃªn há»‡</a>
+        </div>
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-headline font-semibold text-sm hover:opacity-90 transition-all duration-200"
+        >
+          ÄÄƒng kÃ½ tÆ° váº¥n
+        </motion.button>
+      </div>
+      <div className="bg-slate-100/50 h-[1px] w-full"></div>
+    </motion.nav>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/Portfolio.tsx
+"use client";
+
+import { motion } from "framer-motion";
+
+export default function Portfolio() {
+  return (
+    <section className="py-32 bg-surface-container-lowest overflow-hidden" id="projects">
+      <div className="max-w-7xl mx-auto px-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4"
+        >
+          <div>
+            <span className="text-primary font-bold tracking-widest uppercase text-xs">Portfolio</span>
+            <h2 className="text-5xl font-black font-headline mt-2">Dá»± Ã¡n tiÃªu biá»ƒu</h2>
+          </div>
+          <a className="text-primary font-bold hover:underline mb-2" href="#">Táº¥t cáº£ dá»± Ã¡n &rarr;</a>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Project 1 */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="group cursor-pointer"
+          >
+            <div className="relative overflow-hidden rounded-[2rem] mb-6 aspect-video">
+              <img 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                alt="AI Dashboard" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAELKy-wUuJ-7FFv7UYy47v5MwiB8EmjYWB-DHUqb9G8lcuBeQU0zarjn8SJ3qjmplP2oClY9gGvEEWFFNhDTZajYLVWXbtkTfN-mwxWI_1RzpEuMIHMkDNdE6Lf8ec4FDhOL1_LFaoxKJn6un3HOi3vHYA9j8qEZvnBoAblzlNvpLfH5wmHmHmxTuHQu41puIW7KKPqdkBjY8svfbSKwQPcCEWnJxDhqjig5rEqbttAj96QiaZhaIYTd1YRB4YQB-Ia7b3vh_yaWnN"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-10">
+                <span className="text-white font-bold text-lg">Xem chi tiáº¿t dá»± Ã¡n</span>
+              </div>
+            </div>
+            <h4 className="text-xs font-bold text-tertiary uppercase tracking-widest mb-2">AI Integration</h4>
+            <h3 className="text-2xl font-bold font-headline group-hover:text-primary transition-colors">Há»‡ thá»‘ng AI Chatbot Ä‘a ná»n táº£ng cho F&B</h3>
+          </motion.div>
+
+          {/* Project 2 */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="group cursor-pointer md:mt-24"
+          >
+            <div className="relative overflow-hidden rounded-[2rem] mb-6 aspect-video">
+              <img 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                alt="Workflow automation nodes" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGI4DQXBGygkLsvhLI3t0BJG4AbbOE3oGAT5OkyyTvy87_ztzbWziRHuPUAtF1_YjKqoMblux73WAl3tvxH4tvrLTjYfZGY6goPE4tsVK2RAFuW8OcRVkL1IA4iw-tXdwAfikswHbqP8HdrUMAjYtYvFDly3gg-H-JJJiqG2FktC70ZrD7lsyoP1afv0yjaERfizzD8V6G8IY617NwVoX9iDPjOlKk69GUPZ88qZY250nZav1Sf2_tuj5qvHpgolUVevN21IX4us2g"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-10">
+                <span className="text-white font-bold text-lg">Xem chi tiáº¿t dá»± Ã¡n</span>
+              </div>
+            </div>
+            <h4 className="text-xs font-bold text-tertiary uppercase tracking-widest mb-2">Workflow Automation</h4>
+            <h3 className="text-2xl font-bold font-headline group-hover:text-primary transition-colors">Tá»± Ä‘á»™ng hÃ³a quy trÃ¬nh Content Marketing 100% báº±ng AI</h3>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+===FILE_END==
+===FILE_START==
+D:/Demo/mrhoitv-landing/src/components/Services.tsx
+"use client";
+
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+export default function Services() {
+  return (
+    <section className="py-32 bg-surface" id="services">
+      <div className="max-w-7xl mx-auto px-8">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center mb-20 text-center"
+        >
+          <h2 className="text-4xl font-black font-headline mb-4">Dá»‹ch vá»¥ ChuyÃªn nghiá»‡p</h2>
+          <div className="h-1.5 w-24 bg-primary rounded-full"></div>
+        </motion.div>
+        
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {/* Service 1 */}
+          <motion.div variants={itemVariants} className="group bg-surface-container-lowest p-10 rounded-[2rem] border border-outline-variant/10 hover:shadow-2xl transition-all duration-300">
+            <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+              <span className="material-symbols-outlined text-4xl">strategy</span>
+            </div>
+            <h3 className="text-2xl font-bold font-headline mb-4">TÆ° váº¥n chiáº¿n lÆ°á»£c AI</h3>
+            <p className="text-on-surface-variant mb-8 leading-relaxed">
+              PhÃ¢n tÃ­ch hiá»‡n tráº¡ng vÃ  xÃ¢y dá»±ng lá»™ trÃ¬nh á»©ng dá»¥ng AI phÃ¹ há»£p vá»›i má»¥c tiÃªu kinh doanh cá»§a doanh nghiá»‡p báº¡n.
+            </p>
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center gap-2 text-sm font-medium text-on-surface">
+                <span className="material-symbols-outlined text-primary text-lg" data-weight="fill">check_circle</span>
+                ÄÃ¡nh giÃ¡ tÃ­nh kháº£ thi AI
+              </li>
+              <li className="flex items-center gap-2 text-sm font-medium text-on-surface">
+                <span className="material-symbols-outlined text-primary text-lg" data-weight="fill">check_circle</span>
+                Tá»‘i Æ°u chi phÃ­ Ä‘áº§u tÆ°
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Service 2 */}
+          <motion.div variants={itemVariants} className="group bg-primary text-on-primary p-10 rounded-[2rem] shadow-2xl shadow-primary/20 md:scale-105 z-10 transition-transform hover:scale-[1.07]">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-8">
+              <span className="material-symbols-outlined text-4xl">auto_mode</span>
+            </div>
+            <h3 className="text-2xl font-bold font-headline mb-4">Há»‡ thá»‘ng Tá»± Ä‘á»™ng hÃ³a</h3>
+            <p className="text-on-primary-container mb-8 leading-relaxed">
+              Thiáº¿t káº¿ vÃ  triá»ƒn khai cÃ¡c workflow tá»± Ä‘á»™ng hÃ³a (n8n, Make, Zapier) giÃºp giáº£m thiá»ƒu sai sÃ³t vÃ  tiáº¿t kiá»‡m thá»i gian.
+            </p>
+            <ul className="space-y-3 mb-8 text-on-primary">
+              <li className="flex items-center gap-2 text-sm font-medium">
+                <span className="material-symbols-outlined text-lg" data-weight="fill">check_circle</span>
+                Tá»± Ä‘á»™ng hÃ³a Sales & Marketing
+              </li>
+              <li className="flex items-center gap-2 text-sm font-medium">
+                <span className="material-symbols-outlined text-lg" data-weight="fill">check_circle</span>
+                AI Chatbot chÄƒm sÃ³c khÃ¡ch hÃ ng
+              </li>
+            </ul>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-white text-primary py-3 rounded-xl font-bold font-headline hover:bg-surface-container-low transition-colors"
+            >
+              TÃ¬m hiá»ƒu thÃªm
+            </motion.button>
+          </motion.div>
+
+          {/* Service 3 */}
+          <motion.div variants={itemVariants} className="group bg-surface-container-lowest p-10 rounded-[2rem] border border-outline-variant/10 hover:shadow-2xl transition-all duration-300">
+            <div className="w-16 h-16 bg-tertiary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+              <span className="material-symbols-outlined text-4xl">school</span>
+            </div>
+            <h3 className="text-2xl font-bold font-headline mb-4">ÄÃ o táº¡o Doanh nghiá»‡p</h3>
+            <p className="text-on-surface-variant mb-8 leading-relaxed">
+              ChÆ°Æ¡ng trÃ¬nh Ä‘Ã o táº¡o thá»±c chiáº¿n vá» Prompt Engineering vÃ  cÃ´ng cá»¥ AI cho Ä‘á»™i ngÅ© nhÃ¢n sá»± cá»§a báº¡n.
+            </p>
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center gap-2 text-sm font-medium text-on-surface">
+                <span className="material-symbols-outlined text-tertiary text-lg" data-weight="fill">check_circle</span>
+                Ká»¹ nÄƒng sá»­ dá»¥ng ChatGPT & LLMs
+              </li>
+              <li className="flex items-center gap-2 text-sm font-medium text-on-surface">
+                <span className="material-symbols-outlined text-tertiary text-lg" data-weight="fill">check_circle</span>
+                á»¨ng dá»¥ng AI Content Creation
+              </li>
+            </ul>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+===FILE_END==
+

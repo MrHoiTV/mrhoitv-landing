@@ -4,7 +4,7 @@ import path from 'path';
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENROUTER_API_KEY || "",
+  apiKey: "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",
   baseURL: "https://openrouter.ai/api/v1",
   defaultHeaders: {
     "HTTP-Referer": "https://mrhoitv.com",
