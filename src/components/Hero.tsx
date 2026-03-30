@@ -45,11 +45,12 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         className="flex-1 relative"
       >
-        <div className="w-full aspect-square rounded-[2rem] overflow-hidden bg-surface-container-high relative z-10">
+        <div className="w-full aspect-square rounded-[2rem] overflow-hidden relative z-10 shadow-2xl shadow-primary/20 border-4 border-white/50 backdrop-blur-3xl">
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent z-10 pointer-events-none"></div>
           <img 
-            className="w-full h-full object-cover" 
+            className="w-full h-full object-cover relative z-0 brightness-110 contrast-[1.15] saturate-110 drop-shadow-md" 
             alt="Professional headshot of Mr. Hói TV" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsKfj-MdR5vhJt1tWVa0O6RVp6kOPnMhGreyNqzL_7Zii2FJ3nS5q4NcaCIOHsjlAxCHWOqv5e1YIagZXtD2b2xkayQvsPu9H3E4HJASNexUy2Z3ZuDYem4-0JMM36X1UcpQsIVwzG_CyukcHYB0FwkYb5aNBtcOKbwBsBBnx2xFElNNiTrKZHSE7FIjcY0DIGsMFUlnScixqg1YwbR6A69JflaEvOJ8uBpy0quqQQOccC8fXeoCaDTQK-N_TD4CZb5IOgBf0BLyCk"
+            src="/avatar.png"
           />
         </div>
         <motion.div 
