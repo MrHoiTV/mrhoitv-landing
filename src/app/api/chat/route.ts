@@ -4,8 +4,7 @@ import path from 'path';
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  // API Key được chia làm 2 mảnh để GitHub không quét ra và khóa tự động
-  apiKey: process.env.OPENROUTER_API_KEY || ("sk-or-v1-" + "d86fcc4a1cf6b6bfdd5a8e1feeea1e84ba65ef3588a7ccbf6297fdcef6fe7530"),
+  apiKey: process.env.OPENROUTER_API_KEY || "",
   baseURL: "https://openrouter.ai/api/v1",
   defaultHeaders: {
     "HTTP-Referer": "https://mrhoitv.com",
